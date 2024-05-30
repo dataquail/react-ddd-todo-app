@@ -1,0 +1,7 @@
+name: Code Quality
+on: pull_request
+jobs:
+  client_code_quality:
+    uses: ./.github/workflows/client_fast_checks.yml
+    with:
+      directory: client
