@@ -1,31 +1,9 @@
-import {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useCallback,
-  useRef,
-} from 'react';
+import { ReactNode, useState, useCallback, useRef } from 'react';
 import { TodoDictionary, TodoRecord } from '../TodoRecord';
-
-export type ITodoContext = {
-  saveTodo: (todoRecord: TodoRecord) => void;
-  saveAllTodos: (todoRecords: TodoRecord[]) => void;
-  deleteTodo: (id: string) => void;
-  deleteAllTodos: () => void;
-  getAllTodos: () => TodoDictionary;
-  getOneById: (id: string) => TodoRecord | undefined;
-  allTodos: TodoDictionary;
-};
-
-const TodoContext = createContext<ITodoContext>({} as ITodoContext);
+import { TodoContext } from './todosReactContextConfig';
 
 type TodoProps = {
   children: ReactNode;
-};
-
-export const useTodosContext = () => {
-  return useContext(TodoContext);
 };
 
 export const TodosProvider = ({ children }: TodoProps) => {
