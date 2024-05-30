@@ -1,22 +1,19 @@
 import { SegmentedControl } from '@mantine/core';
-import { matchRoutes, useLocation, useNavigate } from 'react-router-dom';
-
-const routes = [{ path: '/todo/redux' }];
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const DependencySelector = () => {
   const location = useLocation();
-  const matchingRoutes = matchRoutes(routes, location);
-  const isRedux =
-    matchingRoutes?.some((route) => route.pathname === '/todo/redux') ?? false;
+  const implementationFromRoute = location.pathname.replace('/todo/', '');
   const navigate = useNavigate();
 
   return (
     <SegmentedControl
-      value={isRedux ? 'redux' : 'reactContext'}
+      value={implementationFromRoute}
       onChange={(value) => navigate(`/todo/${value}`)}
       data={[
         { label: 'React Context', value: 'reactContext' },
         { label: 'Redux', value: 'redux' },
+        { label: 'Zustand', value: 'zustand' },
       ]}
     />
   );
