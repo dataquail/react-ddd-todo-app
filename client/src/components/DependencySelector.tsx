@@ -1,4 +1,4 @@
-import { Button } from '@mantine/core';
+import { SegmentedControl } from '@mantine/core';
 import { matchRoutes, useLocation, useNavigate } from 'react-router-dom';
 
 const routes = [{ path: '/todo/redux' }];
@@ -11,16 +11,13 @@ export const DependencySelector = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Button
-        disabled={!isRedux}
-        onClick={() => navigate('/todo/reactContext')}
-      >
-        React Context
-      </Button>
-      <Button disabled={isRedux} onClick={() => navigate('/todo/redux')}>
-        Redux
-      </Button>
-    </>
+    <SegmentedControl
+      value={isRedux ? 'redux' : 'reactContext'}
+      onChange={(value) => navigate(`/todo/${value}`)}
+      data={[
+        { label: 'React Context', value: 'reactContext' },
+        { label: 'Redux', value: 'redux' },
+      ]}
+    />
   );
 };
