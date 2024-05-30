@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TodosProvider } from 'src/modules/todo/infrastructure/repositories/TodoRepository/reactContextImpl/todosReactContextConfig';
+import { TodosProvider } from 'src/modules/todo/infrastructure/repositories/TodoRepository/reactContextImpl/TodosProvider';
 
 export const getTodosProviderWrapper = () => {
   return {

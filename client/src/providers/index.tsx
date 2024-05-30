@@ -2,7 +2,7 @@ import { ReactNode, useRef } from 'react';
 import { AppStore, makeStore } from 'src/lib/store';
 import { StoreProvider } from './StoreProvider';
 import { ThemeProvider } from './ThemeProvider';
-import { TodosProvider } from '../modules/todo/infrastructure/repositories/TodoRepository/reactContextImpl/todosReactContextConfig';
+import { TodosProvider } from 'src/modules/todo/infrastructure/repositories/TodoRepository/reactContextImpl/TodosProvider';
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   const storeRef = useRef<AppStore>();
