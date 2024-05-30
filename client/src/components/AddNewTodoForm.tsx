@@ -1,4 +1,4 @@
-import { Button, Divider, Group, Space, TextInput } from '@mantine/core';
+import { Button, Group, TextInput } from '@mantine/core';
 import { hasLength, useForm } from '@mantine/form';
 import { Todo } from 'src/modules/todo/domain/Todo';
 import { ITodoRepository } from 'src/modules/todo/domain/repositories/ITodoRepository';
@@ -19,26 +19,20 @@ export const AddNewTodoForm = ({ todoRepository }: AddNewTodoFormProps) => {
   });
 
   return (
-    <>
-      <form
-        onSubmit={form.onSubmit((values) => {
-          todoRepository.create(Todo.create(values.title));
-          form.setFieldValue('title', '');
-        })}
-      >
+    <form
+      onSubmit={form.onSubmit((values) => {
+        todoRepository.create(Todo.create(values.title));
+        form.setFieldValue('title', '');
+      })}
+    >
+      <Group justify="space-between" align="start" h="100%" mt="md">
         <TextInput
           key={form.key('title')}
-          label="Todo Title"
           placeholder="Enter your todo"
           {...form.getInputProps('title')}
         />
-        <Space h="lg" />
-        <Divider my="md" />
-        <Space h="lg" />
-        <Group justify="space-between" mt="md">
-          <Button type="submit">Submit</Button>
-        </Group>
-      </form>
-    </>
+        <Button type="submit">Add</Button>
+      </Group>
+    </form>
   );
 };
