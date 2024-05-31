@@ -14,15 +14,11 @@ export class TodoRepositoryZustandImpl implements ITodoRepository {
     >,
   ) {}
 
-  public create(todo: Todo): void {
+  public save(todo: Todo): void {
     this.zustandTodoStore.getState().saveTodo(toTodoRecord(todo));
   }
 
-  public update(todo: Todo): void {
-    this.zustandTodoStore.getState().saveTodo(toTodoRecord(todo));
-  }
-
-  public updateAll(todoList: Todo[]): void {
+  public saveAll(todoList: Todo[]): void {
     this.zustandTodoStore.getState().saveAllTodos(
       todoList.reduce((acc, todo) => {
         acc[todo.id] = toTodoRecord(todo);

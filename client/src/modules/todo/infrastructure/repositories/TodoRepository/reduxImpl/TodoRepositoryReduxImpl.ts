@@ -2,11 +2,10 @@ import { AppStore, AppDispatch } from 'src/lib/store';
 import { ITodoRepository } from 'src/modules/todo/domain/repositories/ITodoRepository';
 import { Todo } from 'src/modules/todo/domain/Todo';
 import {
-  createTodo,
+  saveTodo,
   deleteAllTodos,
   deleteTodo,
   saveAllTodos,
-  updateTodo,
 } from './todosReduxConfig';
 import { toTodoRecord } from '../utils/toTodoRecord';
 import { getAllTodosUtil } from '../utils/getAllTodosUtil';
@@ -18,15 +17,11 @@ export class TodoRepositoryReduxImpl implements ITodoRepository {
     private readonly appDispatch: AppDispatch,
   ) {}
 
-  public create(todo: Todo): void {
-    this.appDispatch(createTodo(toTodoRecord(todo)));
+  public save(todo: Todo): void {
+    this.appDispatch(saveTodo(toTodoRecord(todo)));
   }
 
-  public update(todo: Todo): void {
-    this.appDispatch(updateTodo(toTodoRecord(todo)));
-  }
-
-  public updateAll(todoList: Todo[]): void {
+  public saveAll(todoList: Todo[]): void {
     this.appDispatch(saveAllTodos(todoList.map(toTodoRecord)));
   }
 

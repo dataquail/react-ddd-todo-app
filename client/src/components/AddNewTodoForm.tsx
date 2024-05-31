@@ -21,7 +21,7 @@ export const AddNewTodoForm = ({ todoRepository }: AddNewTodoFormProps) => {
   return (
     <form
       onSubmit={form.onSubmit((values) => {
-        todoRepository.create(Todo.create(values.title));
+        todoRepository.save(Todo.create(values.title));
         form.setFieldValue('title', '');
       })}
     >

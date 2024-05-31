@@ -10,7 +10,7 @@ export class MarkTodoAsCompleted {
       throw new Error(`Todo with id ${todoId} not found`);
     }
 
-    this.todoRepository.update(todoToComplete.complete());
+    this.todoRepository.save(todoToComplete.complete());
 
     return;
   }

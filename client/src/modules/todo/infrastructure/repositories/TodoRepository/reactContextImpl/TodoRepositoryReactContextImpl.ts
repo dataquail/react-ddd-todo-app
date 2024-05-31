@@ -8,15 +8,11 @@ import { ITodoContext } from './todosReactContextConfig';
 export class TodoRepositoryReactContextImpl implements ITodoRepository {
   constructor(private readonly todosContext: ITodoContext) {}
 
-  create(todo: Todo): void {
+  save(todo: Todo): void {
     this.todosContext.saveTodo(toTodoRecord(todo));
   }
 
-  update(todo: Todo): void {
-    this.todosContext.saveTodo(toTodoRecord(todo));
-  }
-
-  updateAll(todoList: Todo[]): void {
+  saveAll(todoList: Todo[]): void {
     this.todosContext.saveAllTodos(todoList.map(toTodoRecord));
   }
 
