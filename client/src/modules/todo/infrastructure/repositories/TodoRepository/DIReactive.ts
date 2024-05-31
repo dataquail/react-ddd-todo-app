@@ -6,28 +6,21 @@ import { useGetOneByIdReactContextImpl } from './reactContextImpl/useGetOneByIdR
 import { useGetAllZustandImpl } from './zustandImpl/useGetAllZustandImpl';
 import { useGetOneByIdZustandImpl } from './zustandImpl/useGetOneByIdZustandImpl';
 
-const useTodoRepositoryReactiveReduxImpl = (): ITodoRepositoryReactive => {
-  return {
-    useGetAll: useGetAllReduxImpl,
-    useGetOneById: useGetOneByIdReduxImpl,
-  };
+const todoRepositoryReactiveReduxImpl: ITodoRepositoryReactive = {
+  useGetAll: useGetAllReduxImpl,
+  useGetOneById: useGetOneByIdReduxImpl,
 };
 
-const useTodoRepositoryReactiveReactContextImpl =
-  (): ITodoRepositoryReactive => {
-    return {
-      useGetAll: useGetAllReactContextImpl,
-      useGetOneById: useGetOneByIdReactContextImpl,
-    };
-  };
-
-const useTodoRepositoryReactiveZustandImpl = (): ITodoRepositoryReactive => {
-  return {
-    useGetAll: useGetAllZustandImpl,
-    useGetOneById: useGetOneByIdZustandImpl,
-  };
+const todoRepositoryReactiveReactContextImpl: ITodoRepositoryReactive = {
+  useGetAll: useGetAllReactContextImpl,
+  useGetOneById: useGetOneByIdReactContextImpl,
 };
 
-export const redux = useTodoRepositoryReactiveReduxImpl;
-export const reactContext = useTodoRepositoryReactiveReactContextImpl;
-export const zustand = useTodoRepositoryReactiveZustandImpl;
+const todoRepositoryReactiveZustandImpl: ITodoRepositoryReactive = {
+  useGetAll: useGetAllZustandImpl,
+  useGetOneById: useGetOneByIdZustandImpl,
+};
+
+export const redux = todoRepositoryReactiveReduxImpl;
+export const reactContext = todoRepositoryReactiveReactContextImpl;
+export const zustand = todoRepositoryReactiveZustandImpl;

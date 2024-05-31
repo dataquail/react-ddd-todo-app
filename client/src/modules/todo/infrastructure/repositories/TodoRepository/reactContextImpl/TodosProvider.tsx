@@ -6,6 +6,12 @@ type TodoProps = {
   children: ReactNode;
 };
 
+/**
+ * This has been implemented using the `useState` and `useRef` hooks.
+ * It could be reimplemented using the `useReducer` hook. However, it would still
+ * need to maintain a reference to the current state to avoid stale closures.
+ */
+
 export const TodosProvider = ({ children }: TodoProps) => {
   const [todosDictionary, setTodosDictionary] = useState<TodoDictionary>({});
   const todosDictionaryRef = useRef<TodoDictionary>();

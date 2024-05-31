@@ -72,7 +72,7 @@ describe('TodoRepository', () => {
       const todo = Todo.create('test todo');
 
       act(() => {
-        result.current.create(todo);
+        result.current.save(todo);
       });
 
       expect(result.current.getOneById(todo.id)).toEqual(todo);
@@ -87,7 +87,7 @@ describe('TodoRepository', () => {
       const todo = Todo.create('test todo');
 
       act(() => {
-        result.current.create(todo);
+        result.current.save(todo);
       });
 
       expect(result.current.getOneById(todo.id)).toEqual(todo);
@@ -109,8 +109,8 @@ describe('TodoRepository', () => {
       const todo2 = Todo.create('todo 2');
 
       act(() => {
-        result.current.create(todo1);
-        result.current.create(todo2);
+        result.current.save(todo1);
+        result.current.save(todo2);
       });
 
       expect(result.current.getOneById(todo1.id)).toEqual(todo1);
@@ -133,14 +133,14 @@ describe('TodoRepository', () => {
       const todo = Todo.create('todo 1');
 
       act(() => {
-        result.current.create(todo);
+        result.current.save(todo);
       });
 
       expect(result.current.getOneById(todo.id)).toEqual(todo);
       expect(result.current.getOneById(todo.id)?.completedAt).toBeUndefined();
 
       act(() => {
-        result.current.update(todo.complete());
+        result.current.save(todo.complete());
       });
 
       expect(

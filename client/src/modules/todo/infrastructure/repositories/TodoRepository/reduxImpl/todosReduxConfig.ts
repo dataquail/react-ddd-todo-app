@@ -10,13 +10,7 @@ export const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    createTodo: (state, action: PayloadAction<TodoRecord>) => {
-      state.dict = {
-        ...state.dict,
-        [action.payload.id]: action.payload,
-      };
-    },
-    updateTodo: (state, action: PayloadAction<TodoRecord>) => {
+    saveTodo: (state, action: PayloadAction<TodoRecord>) => {
       state.dict[action.payload.id] = action.payload;
     },
     saveAllTodos: (state, action: PayloadAction<TodoRecord[]>) => {
@@ -35,11 +29,6 @@ export const todosSlice = createSlice({
   },
 });
 
-export const {
-  createTodo,
-  updateTodo,
-  saveAllTodos,
-  deleteTodo,
-  deleteAllTodos,
-} = todosSlice.actions;
+export const { saveTodo, saveAllTodos, deleteTodo, deleteAllTodos } =
+  todosSlice.actions;
 export const todosReducer = todosSlice.reducer;

@@ -1,9 +1,8 @@
 import { Todo } from '../Todo';
 
 export type ITodoRepository = {
-  create: (todo: Todo) => void;
-  update: (todo: Todo) => void;
-  updateAll: (todoList: Todo[]) => void;
+  save: (todo: Todo) => void;
+  saveAll: (todoList: Todo[]) => void;
   delete: (id: string) => void;
   deleteAll: () => void;
   getAll: () => Todo[];

@@ -9,9 +9,9 @@ import {
   zustand as useZustandTodoRepository,
 } from '../DI';
 import {
-  redux as useReduxTodoRepositoryReactive,
-  reactContext as useReactContextTodoRepositoryReactive,
-  zustand as useZustandTodoRepositoryReactive,
+  redux as todoRepositoryReactiveReduxImpl,
+  reactContext as todoRepositoryReactiveReactContextImpl,
+  zustand as todoRepositoryReactiveZustandImpl,
 } from '../DIReactive';
 import { useTodoStore } from '../zustandImpl/todoStore';
 
@@ -39,7 +39,7 @@ describe('TodoRepositoryReactive', () => {
         const todoRepository = useReduxTodoRepository();
         return {
           todoRepository,
-          useGetAll: useReduxTodoRepositoryReactive().useGetAll(),
+          useGetAll: todoRepositoryReactiveReduxImpl.useGetAll(),
         };
       };
       return renderHook(useTestHook, {
@@ -55,7 +55,7 @@ describe('TodoRepositoryReactive', () => {
         const todoRepository = useReactContextTodoRepository();
         return {
           todoRepository,
-          useGetAll: useReactContextTodoRepositoryReactive().useGetAll(),
+          useGetAll: todoRepositoryReactiveReactContextImpl.useGetAll(),
         };
       };
       return renderHook(useTestHook, {
@@ -70,7 +70,7 @@ describe('TodoRepositoryReactive', () => {
         const todoRepository = useZustandTodoRepository();
         return {
           todoRepository,
-          useGetAll: useZustandTodoRepositoryReactive().useGetAll(),
+          useGetAll: todoRepositoryReactiveZustandImpl.useGetAll(),
         };
       };
       return renderHook(useTestHook);
@@ -105,7 +105,7 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('test todo');
 
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
 
         expect(result.current.useGetAll[0]).toEqual(todo);
@@ -120,7 +120,7 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('test todo');
 
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
 
         expect(result.current.useGetAll[0]).toEqual(todo);
@@ -142,8 +142,8 @@ describe('TodoRepositoryReactive', () => {
         const todo2 = Todo.create('todo 2');
 
         act(() => {
-          result.current.todoRepository.create(todo1);
-          result.current.todoRepository.create(todo2);
+          result.current.todoRepository.save(todo1);
+          result.current.todoRepository.save(todo2);
         });
 
         expect(result.current.useGetAll[0]).toEqual(todo1);
@@ -165,13 +165,13 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('todo 1');
 
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
 
         expect(result.current.useGetAll[0]?.completedAt).toBeUndefined();
 
         act(() => {
-          result.current.todoRepository.update(todo.complete());
+          result.current.todoRepository.save(todo.complete());
         });
 
         expect(result.current.useGetAll[0]?.completedAt).not.toBeUndefined();
@@ -190,7 +190,7 @@ describe('TodoRepositoryReactive', () => {
         const todoRepository = useReduxTodoRepository();
         return {
           todoRepository,
-          useGetOneById: useReduxTodoRepositoryReactive().useGetOneById(todoId),
+          useGetOneById: todoRepositoryReactiveReduxImpl.useGetOneById(todoId),
         };
       };
       return renderHook(useTestHook, {
@@ -207,7 +207,7 @@ describe('TodoRepositoryReactive', () => {
         return {
           todoRepository,
           useGetOneById:
-            useReactContextTodoRepositoryReactive().useGetOneById(todoId),
+            todoRepositoryReactiveReactContextImpl.useGetOneById(todoId),
         };
       };
       return renderHook(useTestHook, {
@@ -223,7 +223,7 @@ describe('TodoRepositoryReactive', () => {
         return {
           todoRepository,
           useGetOneById:
-            useZustandTodoRepositoryReactive().useGetOneById(todoId),
+            todoRepositoryReactiveZustandImpl.useGetOneById(todoId),
         };
       };
       return renderHook(useTestHook);
@@ -257,7 +257,7 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('todo 1');
         const { result } = getTestHarness(implementation, todo.id);
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
         expect(result.current.useGetOneById).toEqual(todo);
       },
@@ -269,7 +269,7 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('todo 1');
         const { result } = getTestHarness(implementation, todo.id);
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
         expect(result.current.useGetOneById).toEqual(todo);
         act(() => {
@@ -286,8 +286,8 @@ describe('TodoRepositoryReactive', () => {
         const todo2 = Todo.create('todo 2');
         const { result } = getTestHarness(implementation, todo1.id);
         act(() => {
-          result.current.todoRepository.create(todo1);
-          result.current.todoRepository.create(todo2);
+          result.current.todoRepository.save(todo1);
+          result.current.todoRepository.save(todo2);
         });
         expect(result.current.useGetOneById).toEqual(todo1);
         act(() => {
@@ -303,11 +303,11 @@ describe('TodoRepositoryReactive', () => {
         const todo = Todo.create('todo 1');
         const { result } = getTestHarness(implementation, todo.id);
         act(() => {
-          result.current.todoRepository.create(todo);
+          result.current.todoRepository.save(todo);
         });
         expect(result.current.useGetOneById?.completedAt).toBeUndefined();
         act(() => {
-          result.current.todoRepository.update(todo.complete());
+          result.current.todoRepository.save(todo.complete());
         });
         expect(result.current.useGetOneById?.completedAt).not.toBeUndefined();
       },
