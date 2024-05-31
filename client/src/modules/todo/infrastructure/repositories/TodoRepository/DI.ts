@@ -4,6 +4,8 @@ import { useTodosContext } from './reactContextImpl/todosReactContextConfig';
 import { TodoRepositoryReactContextImpl } from './reactContextImpl/TodoRepositoryReactContextImpl';
 import { useAppDispatch, useAppStore } from 'src/lib/store';
 import { TodoRepositoryReduxImpl } from './reduxImpl/TodoRepositoryReduxImpl';
+import { TodoRepositoryZustandImpl } from './zustandImpl/TodoRepositoryZustandImpl';
+import { useTodoStore } from './zustandImpl/todoStore';
 
 const useTodoRepositoryReduxImpl = (): ITodoRepository => {
   const appStore = useAppStore();
@@ -24,5 +26,12 @@ const useTodoRepositoryReactContextImpl = (): ITodoRepository => {
   );
 };
 
+const todoRepositoryZustandImpl = new TodoRepositoryZustandImpl(useTodoStore);
+
+const useTodoRepositoryZustandImpl = (): ITodoRepository => {
+  return todoRepositoryZustandImpl;
+};
+
 export const redux = useTodoRepositoryReduxImpl;
 export const reactContext = useTodoRepositoryReactContextImpl;
+export const zustand = useTodoRepositoryZustandImpl;

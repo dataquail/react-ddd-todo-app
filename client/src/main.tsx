@@ -8,9 +8,10 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import { ErrorPage } from './ErrorPage.tsx';
-import { Providers } from './providers/index.tsx';
-import { TodoRedux } from './routes/TodoRedux/index.tsx';
-import { TodoReactContext } from './routes/TodoReactContext/index.tsx';
+import { Providers } from './providers';
+import { TodoRedux } from './routes/TodoRedux';
+import { TodoReactContext } from './routes/TodoReactContext';
+import { TodoZustand } from './routes/TodoZustand';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: '/todo/redux',
     element: <TodoRedux />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/todo/zustand',
+    element: <TodoZustand />,
     errorElement: <ErrorPage />,
   },
 ]);
